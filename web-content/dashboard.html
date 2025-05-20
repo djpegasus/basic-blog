@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block blockbody %}
+<h2>Dashboard Page</h2>
+<hr>
+<a href="{% url 'article:addarticle' %}" class="btn btn-danger">Makale Ekle</a>
+<br>
+<br>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Sıra No</th>
+      <th scope="col">Başlık</th>
+      <th scope="col">Yazar</th>
+      <th scope="col">Tarih</th>
+      <th scope="col">Düzeltme</th>
+      <th scope="col">Silme</th>
+    </tr>
+  </thead>
+  {% for art in article %}
+    <tbody>
+        <tr>
+        <th scope="row">{{art.id}}</th>
+        <td>{{art.title}}</td>
+        <td>{{art.author}}</td>
+        <td>{{art.created_date}}</td>
+        <td><a href="/article/update/{{art.id}}" class="btn btn-danger">Düzeltme</a></td>
+        <td><a href="/article/delete/{{art.id}}" class="btn btn-danger">Silme</a></td>
+        </tr>
+    </tbody>
+  {% endfor %}
+
+</table>
+
+{% endblock blockbody %}
